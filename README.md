@@ -1,64 +1,65 @@
-# 5t4t1cV01d — HTB Portfolio
+# 5t4t1cV01d — Cybersecurity Portfolio
 
-Portafolio personal tipo cyberpunk/hacker, enfocado en Hack The Box.
+Personal cyberpunk/hacker-themed portfolio, featuring dynamic writeups, projects, and certification tracking.
 
-## 🚀 Deploy en GitHub Pages (5 minutos)
+## 🚀 Deploy to GitHub Pages (5 minutes)
 
-### 1. Crea el repositorio
+### 1. Create the Repository
 
 ```bash
-# En GitHub: crea un repo llamado "5t4t1cV01d.github.io" (o cualquier nombre)
-# Opción A: tu sitio principal
-# Repo name: 5t4t1cV01d.github.io → url: https://5t4t1cV01d.github.io
+# On GitHub: create a public repository named "5t4t1cV01d.github.io"
+# Option A: Your main profile site (Highly Recommended)
+# Repo name: 5t4t1cV01d.github.io → URL: https://5t4t1cV01d.github.io
 
-# Opción B: subdirectorio
-# Repo name: portfolio → url: https://5t4t1cV01d.github.io/portfolio
+# Option B: Subdirectory site
+# Repo name: portfolio → URL: https://5t4t1cV01d.github.io/portfolio
 ```
 
-### 2. Sube los archivos
+### 2. Push the Files
 
 ```bash
 git init
 git add .
 git commit -m "feat: initial portfolio deploy"
 git branch -M main
-git remote add origin https://github.com/5t4t1cV01d/5t4t1cV01d.github.io.git
+git remote add origin git@github.com:5t4t1cV01d/5t4t1cV01d.github.io.git
 git push -u origin main
 ```
 
-### 3. Activa GitHub Pages
+### 3. Activate GitHub Pages
 
-- Ve a **Settings → Pages**
+*If you chose **Option A**, your site will build and deploy automatically after the push.* If you chose **Option B**:
+- Go to your repository **Settings → Pages**
 - Source: **Deploy from a branch**
 - Branch: **main** / `/ (root)`
-- Guarda y espera ~2 minutos
-- Tu sitio estará en `https://5t4t1cV01d.github.io`
+- Click **Save** and wait ~2 minutes.
+- Your site will be live at `https://5t4t1cV01d.github.io/portfolio`
 
 ---
 
-## 📁 Estructura del proyecto
+## 📁 Project Structure
 
 ```
 portfolio/
-├── index.html                  # Página principal
+├── index.html                  # Main homepage
 ├── pages/
-│   ├── writeups.html           # Baúl de writeups con filtros
-│   ├── about.html              # Sobre mí, CV, certs, timeline
-│   ├── projects.html           # Dashboard de proyectos, laboratorios y certs
-│   └── writeup.html            # Visor único de writeups dinámico
+│   ├── writeups.html           # Writeups vault with filter controls
+│   ├── about.html              # Biography, CV, certifications & timeline
+│   ├── projects.html           # Projects, labs (HTB/THM/DockerLabs) & target goals
+│   └── writeup.html            # Dynamic single-writeup reader
 ├── components/
-│   ├── navbar.html             # Componente de navegación
-│   └── footer.html             # Componente de pie de página
+│   ├── navbar.html             # Navigation bar template
+│   └── footer.html             # Footer template with contact deep-links
 ├── assets/
-│   ├── css/style.css           # Todos los estilos
-│   ├── icon/                   # Iconos oficiales (HTB, THM, Docker, favicon)
-│   ├── img/                    # Imagen del avatar (5t4t1cV01d.jpeg) y logos Cisco
+│   ├── css/style.css           # Styling system & cyberpunk matrix tokens
+│   ├── icon/                   # SVG brand logos (HTB, THM, Docker & favicon)
+│   ├── img/                    # Avatar images and Cisco badges
 │   └── js/
-│       ├── writeups-data.js    # ← EDITA AQUÍ para registrar máquinas
-│       ├── main.js             # Lógica de filtros y animaciones
-│       ├── components.js       # Cargador de navbar, footer y efectos
-│       └── writeup-renderer.js # Cargador y renderizador de Markdown
-└── _writeups/                  # Los archivos MD de tus writeups (¡edita aquí!)
+│       ├── writeups-data.js    # ← EDIT HERE to register completed labs
+│       ├── main.js             # Filter interactions and copy-to-clipboard toast
+│       ├── components.js       # Dynamic component loaders and overlay effects
+│       └── writeup-renderer.js # Markdown writeup parser & custom HTML renderer
+└── _writeups/                  # Raw markdown files for writeups (write here!)
     ├── htb-cicada.md
     ├── htb-lame.md
     └── htb-bounty.md
@@ -66,189 +67,187 @@ portfolio/
 
 ---
 
-## ➕ Añadir una nueva máquina
+## ➕ Adding a New Writeup
 
-### Paso 1: Registra la máquina en `assets/js/writeups-data.js`
+### Step 1: Register the Lab in `assets/js/writeups-data.js`
 
 ```javascript
 const WRITEUPS = [
-  // ... máquinas existentes ...
+  // ... existing writeups ...
   {
-    id: "htb-miMaquina",
-    title: "MiMaquina",
+    id: "htb-myMachine",
+    title: "MyMachine",
     platform: "HTB",        // HTB | THM | DockerLabs
     difficulty: "easy",     // easy | medium | hard
     os: "linux",            // linux | windows
-    date: "2025-12-01",
-    tags: ["Tag1", "Tag2", "Tag3"],
-    desc: "Descripción breve de la máquina y vector de ataque."
+    date: "2026-06-06",
+    tags: ["Web", "SQLi", "PrivEsc"],
+    desc: "Brief summary of the attack vector and key findings."
   }
 ];
 ```
 
-### Paso 2: Crea el writeup en Markdown en `_writeups/htb-miMaquina.md`
+### Step 2: Create the Markdown File at `_writeups/htb-myMachine.md`
 
-Crea un archivo markdown con una cabecera YAML (front matter) al inicio. Ejemplo:
+Add a YAML front matter block at the beginning of the file. Example:
 
 ```markdown
 ---
-title: "MiMaquina"
+title: "MyMachine"
 platform: HTB
 difficulty: easy
 so: Linux
-fecha: 2025-12-01
-tags: [Tag1, Tag2]
-desc: "Descripción breve."
+fecha: 2026-06-06
+tags: [Web, SQLi, PrivEsc]
+desc: "Brief summary."
 ---
 
-# MiMaquina — HackTheBox
+# MyMachine — HackTheBox
 
-## Reconocimiento
-... contenido de tu writeup en markdown normal ...
+## Reconnaissance
+... writeup content in standard markdown ...
 ```
 
-### Paso 3: Haz push
+### Step 3: Push Your Changes
 
 ```bash
 git add .
-git commit -m "writeup: añadir MiMaquina (HTB/Fácil/Linux)"
+git commit -m "writeup: add MyMachine (HTB/Easy/Linux)"
 git push
 ```
 
 ---
 
-## 🎨 Personalización
+## 🎨 Customization
 
-| Archivo | Qué cambiar |
-|---------|-------------|
-| `assets/css/style.css` | Colores (variables CSS en `:root`) |
-| `assets/js/writeups-data.js` | Máquinas, plataformas, fechas |
-| `pages/about.html` | Bio, skills, certs, timeline |
-| `pages/projects.html` | Stats de plataformas (HTB, THM, DockerLabs), certificaciones y metas |
+| File | What to change |
+|---|---|
+| `assets/css/style.css` | Color themes (CSS variables inside `:root`) |
+| `assets/js/writeups-data.js` | Machine stats, platforms, dates, and info |
+| `pages/about.html` | Biography text, skill listings, certifications, and timeline |
+| `pages/projects.html` | Platform scores, Cisco badges, target certification cards |
 
-### Cambiar colores principales
+### Customizing Colors
 
-En `style.css`, líneas 5-25:
+In `style.css`, lines 5-25:
 
 ```css
 :root {
-  --green: #00ff41;    /* Verde neón principal */
-  --green-dim: #00cc33;/* Verde atenuado */
-  /* cambia el verde y el tema entero cambia */
+  --green: #00ff41;     /* Primary neon green highlight */
+  --green-dim: #00cc33; /* Soft green */
+  /* Changing the green variable updates the entire theme */
 }
 ```
 
 ---
 
-## 🖥️ Desarrollo local — Ver y editar en tiempo real
+## 🖥️ Local Development — View and Edit in Real Time
 
-El proyecto es HTML/CSS/JS puro, así que no necesitas instalar compiladores ni herramientas complejas. Para correrlo localmente:
+Since the project uses pure vanilla HTML/CSS/JS, there is no compile or build step required. Choose **one** of the three options below depending on your environment.
 
 ---
 
-### Opción A — Python 3 y Git Bash (Recomendada para Windows y Linux)
+### Option A — Python 3 & Git Bash (Recommended for Windows and Linux)
 
-Si utilizas **Windows**, descarga e instala [Git Bash](https://gitforwindows.org/) y [Python 3](https://www.python.org/downloads/). En Linux/Kali Linux, estas herramientas ya vienen preinstaladas por defecto.
+For **Windows** users, it is recommended to install [Git Bash](https://gitforwindows.org/) and [Python 3](https://www.python.org/downloads/). In Linux/Kali Linux, these tools are available by default.
 
-1. Abre una terminal de **Git Bash** (o tu consola de comandos habitual) en la raíz del proyecto.
-2. Ejecuta el siguiente comando para levantar el servidor web local en el puerto 8080:
+1. Open your **Git Bash** terminal in the root of the project directory.
+2. Spin up the local web server:
    ```bash
    python -m http.server 8080
    ```
-   *(Nota: Dependiendo de tu sistema operativo y de tu alias de instalación, el comando puede ser `python` o `python3`).*
-3. Abre tu navegador de preferencia e ingresa a: **http://localhost:8080**
-4. Para detener el servidor, simplemente presiona `Ctrl + C` en la terminal.
+   *(Note: Depending on your Python installation alias, the command might be `python` or `python3`).*
+3. Open your browser and navigate to: **http://localhost:8080**
+4. To stop the server, press `Ctrl + C` in your terminal.
 
-> **Flujo de trabajo:** Deja el servidor corriendo en la terminal, edita los archivos en tu editor preferido (como VS Code) y recarga la página en tu navegador (`F5` o `Ctrl+R`) para ver los cambios en tiempo real.
+> **Work workflow:** Keep the server running in the background, edit files in your preferred editor (e.g. VS Code), and refresh your browser (`F5` or `Ctrl+R`) to view updates in real time.
 
 ---
 
-### Opción B — Node.js con recarga automática (la más cómoda)
+### Option B — Node.js with Live Reload (Fastest & most convenient)
 
-Si tienes Node.js instalado, puedes usar `browser-sync` que recarga el navegador automáticamente cada vez que guardas un archivo — sin tocar `F5`.
+If you have Node.js installed, you can use `browser-sync` to reload the browser automatically every time you save a file.
 
 ```bash
-# Instala browser-sync una sola vez (global)
+# Install browser-sync globally (only once)
 npm install -g browser-sync
 
-# Entra a la carpeta y lanza
+# Launch the server
 browser-sync start --server --files "**/*.html, assets/css/*.css, assets/js/*.js"
 ```
 
-Se abre solo en: **http://localhost:3000**
+The browser will open automatically at: **http://localhost:3000**
 
-> ✨ Cada vez que guardes un `.html`, `.css` o `.js`, el navegador se recarga solo. Ideal para editar estilos o writeups en tiempo real.
+> ✨ Every time you save an `.html`, `.css`, or `.js` file, the browser refreshes instantly.
 
-**¿No tienes Node.js?** Instálalo en Kali con:
+**Don't have Node.js?** Install it on Kali using:
 
 ```bash
 sudo apt update && sudo apt install nodejs npm -y
-node --version   # verifica instalación
+node --version   # verify installation
 ```
 
 ---
 
-### Opción C — VS Code con Live Server (si usas VS Code)
+### Option C — VS Code with Live Server Extension
 
-1. Abre VS Code con la carpeta del proyecto.
-2. Instala la extensión **Live Server** (busca `ritwickdey.liveserver` en el panel de extensiones).
-3. Haz clic en **"Go Live"** en la barra inferior derecha de VS Code.
-4. Se abre en: **http://localhost:5500**
-
-> Al igual que browser-sync, recarga automáticamente al guardar. Perfecto si ya usas VS Code como editor principal.
+1. Open VS Code in the project directory.
+2. Install the **Live Server** extension (search for `ritwickdey.liveserver` in the extensions tab).
+3. Click **"Go Live"** in the bottom right status bar.
+4. Your browser will open at: **http://localhost:5500**
 
 ---
 
-### Flujo de trabajo recomendado (terminal dividida)
+### Recommended Setup (Split Terminal)
 
-El setup ideal mientras editas writeups o modificas el diseño:
+Ideal split terminal layout while editing writeups or adjusting styles:
 
 ```
 ┌─────────────────────────┬──────────────────────────────┐
 │  Terminal 1             │  Terminal 2                  │
-│  (servidor corriendo)   │  (tu editor / comandos git)  │
+│  (running server)       │  (your editor / git commands)│
 │                         │                              │
 │  $ python -m http.      │  $ nano pages/about.html     │
 │    server 8080          │  $ git add . && git commit   │
 │                         │  $ git push                  │
 └─────────────────────────┴──────────────────────────────┘
-          ↕ Navegador abierto en http://localhost:8080
+          ↕ Browser opened at http://localhost:8080
 ```
 
-O con `tmux` (que ya tienes en Kali):
+Using `tmux` (available by default on Kali Linux):
 
 ```bash
-# Abre tmux
+# Start tmux
 tmux
 
-# Panel izquierdo: servidor
+# Left panel: start server
 python -m http.server 8080
 
-# Divide la pantalla (Ctrl+B, luego %)
-# Panel derecho: edición
+# Split screen vertically (Ctrl+B, then %)
+# Right panel: edit files
 nano assets/js/writeups-data.js
 ```
 
 ---
 
-### ⚡ Cheatsheet rápido
+### ⚡ Quick Cheatsheet
 
-| Comando | Para qué sirve |
-|---------|---------------|
-| `python -m http.server 8080` | Servidor simple en puerto 8080 |
-| `python -m http.server 8080 &` | Servidor en background (libera la terminal en Linux) |
-| `kill %1` | Mata el servidor que corre en background (en Linux) |
-| `browser-sync start --server --files "**/*"` | Servidor con auto-recarga |
-| `Ctrl+C` | Detener cualquier servidor |
+| Command | Description |
+|---|---|
+| `python -m http.server 8080` | Starts a lightweight local web server on port 8080 |
+| `python -m http.server 8080 &` | Runs the Python server in the background (Linux/Unix) |
+| `kill %1` | Terminates the background server process (Linux/Unix) |
+| `browser-sync start --server --files "**/*"` | Runs a server with live-reload enabled |
+| `Ctrl+C` | Stops any active terminal server |
 
 ---
 
-## 📝 Notas
+## 📝 Key Notes
 
-- El proyecto es HTML/CSS/JS puro — sin frameworks, sin build step.
-- Los archivos `.md` en `_writeups/` son de referencia para tus notas.
-- Los writeups en producción son archivos `.html` en `pages/`.
-- Para GitHub Pages NO necesitas Jekyll ni ningún generador de sitios estáticos.
+- The project uses pure, vanilla front-end code — no complex frameworks, no build tooling required.
+- Markdown files in the `_writeups/` folder are kept for note-taking and source backup purposes.
+- Writeups served to the browser in production are formatted as HTML pages located inside the `pages/` directory.
+- No Jekyll or static site generators are needed for GitHub Pages deployment.
 
 ---
 
