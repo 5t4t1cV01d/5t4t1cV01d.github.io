@@ -69,7 +69,7 @@
   }
 
   // 5. Descargar y procesar el archivo Markdown (.md)
-  fetch(`../_writeups/${machine.id}.md`)
+  fetch(`../writeups/${machine.id}.md`)
     .then(r => {
       if (!r.ok) {
         throw new Error(`Código de estado HTTP: ${r.status}`);
@@ -108,7 +108,7 @@
           Details: ${err.message}
         </p>
         <p style="color:var(--text-dim); font-size:0.8rem;">
-          Path searched: _writeups/${machine.id}.md
+          Path searched: writeups/${machine.id}.md
         </p>
       `;
     });

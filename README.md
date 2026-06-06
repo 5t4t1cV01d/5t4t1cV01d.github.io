@@ -59,7 +59,7 @@ portfolio/
 │       ├── main.js             # Filter interactions and copy-to-clipboard toast
 │       ├── components.js       # Dynamic component loaders and overlay effects
 │       └── writeup-renderer.js # Markdown writeup parser & custom HTML renderer
-└── _writeups/                  # Raw markdown files for writeups (write here!)
+└── writeups/                   # Raw markdown files for writeups (write here!)
     ├── htb-cicada.md
     ├── htb-lame.md
     └── htb-bounty.md
@@ -87,7 +87,7 @@ const WRITEUPS = [
 ];
 ```
 
-### Step 2: Create the Markdown File at `_writeups/htb-myMachine.md`
+### Step 2: Create the Markdown File at `writeups/htb-myMachine.md`
 
 Add a YAML front matter block at the beginning of the file. Example:
 
@@ -245,7 +245,7 @@ nano assets/js/writeups-data.js
 ## 📝 Key Notes
 
 - The project uses pure, vanilla front-end code — no complex frameworks, no build tooling required.
-- Markdown files in the `_writeups/` folder are kept for note-taking and source backup purposes.
+- Markdown files in the `writeups/` folder are kept for note-taking and source backup purposes.
 - Writeups served to the browser in production are formatted as HTML pages located inside the `pages/` directory.
 - No Jekyll or static site generators are needed for GitHub Pages deployment.
 
