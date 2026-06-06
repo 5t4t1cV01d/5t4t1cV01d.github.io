@@ -42,13 +42,15 @@
     const osLabel = machine.os.charAt(0).toUpperCase() + machine.os.slice(1);
     const tagsHtml = (machine.tags || []).map(t => `<span class="tag">${t}</span>`).join('\n');
 
+    const platformLogo = (typeof PLAT_LOGOS !== 'undefined' && PLAT_LOGOS[machine.platform]) || 'Hackthebox-Logo.svg';
+
     headerContainer.innerHTML = `
       <div class="writeup-header">
         ${machine.avatar ? `<img src="${machine.avatar}" class="machine-avatar-large" alt="${machine.title}" />` : ''}
         <div style="flex: 1;">
           <h1>${machine.title}</h1>
           <div class="card-meta" style="margin-bottom:0.8rem">
-            <span class="card-platform ${platClass}">${machine.platform}</span>
+            <img src="../assets/icon/${platformLogo}" class="writeup-platform-logo" alt="${machine.platform}" />
             <span class="diff-badge ${diffClass}">${diffLabel}</span>
             <span class="os-badge">${osIcon} ${osLabel}</span>
             ${machine.release_date || machine.completed_date ? `

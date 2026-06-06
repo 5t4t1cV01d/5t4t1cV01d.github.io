@@ -530,12 +530,28 @@ body {
 }
 
 .card-platform {
-  font-size: 0.65rem;
-  padding: 2px 6px;
+  font-size: 0.68rem;
+  padding: 2px 8px;
   border-radius: 2px;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   white-space: nowrap;
+}
+
+.writeup-platform-logo {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.card-platform-logo {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
 }
 
 .plat-htb {

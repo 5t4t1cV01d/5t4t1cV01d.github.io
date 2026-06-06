@@ -33,7 +33,7 @@ function renderCard(m, linkPrefix = '') {
       <div class="card-top">
         ${m.avatar ? `<img src="${m.avatar}" class="machine-avatar-mini" alt="${m.title}" />` : ''}
         <span class="card-title" ${m.avatar ? 'style="margin-left: 0.6rem; flex: 1;"' : ''}>${m.title}</span>
-        <span class="card-platform ${platClass}">${m.platform}</span>
+        <img src="${linkPrefix ? '' : '../'}assets/icon/${(typeof PLAT_LOGOS !== 'undefined' && PLAT_LOGOS[m.platform]) || 'Hackthebox-Logo.svg'}" class="card-platform-logo" alt="${m.platform}" />
       </div>
       <div class="card-meta">
         <span class="diff-badge ${diffClass}">${diffLabel}</span>

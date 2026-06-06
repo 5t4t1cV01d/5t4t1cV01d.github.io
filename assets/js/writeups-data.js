@@ -38,3 +38,8 @@ const OS_ICONS = {
 };
 const DIFF_MAP = { easy: "Easy", medium: "Medium", hard: "Hard" };
 const PLAT_CLASS = { HTB: "plat-htb", THM: "plat-thm", DockerLabs: "plat-docker" };
+const PLAT_LOGOS = { 
+  HTB: "Hackthebox-Logo.svg", 
+  THM: "Tryhackme-Logo.svg", 
+  DockerLabs: "Docker-Logo.svg" 
+};
