@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writeup // 5t4t1cV01d</title>
+  <link rel="icon" type="image/png" href="../assets/icon/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="../assets/js/components.js" defer></script>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar-placeholder" data-active="/writeups"></div>
+
+  <div class="writeup-content">
+    <a href="writeups.html" class="back-link">← Back to Writeups</a>
+
+    <!-- Cabecera dinámica de la máquina (generada por JS) -->
+    <div id="writeup-header-container"></div>
+
+    <!-- Contenido dinámico del writeup en Markdown (generado por JS) -->
+    <div class="writeup-body" id="writeup-body">
+      <p style="color:var(--text-dim)">Loading writeup content...</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <script src="../assets/js/writeups-data.js"></script>
+  <!-- Marked.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Renderizador dinámico -->
+  <script src="../assets/js/writeup-renderer.js" defer></script>
+</body>
+
+</html>

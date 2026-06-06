@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5t4t1cV01d // HTB Portfolio</title>
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="assets/js/components.js" defer></script>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar-placeholder" data-active="/home"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-terminal">
+      <div class="terminal-bar">
+        <span class="t-btn red"></span>
+        <span class="t-btn yellow"></span>
+        <span class="t-btn green"></span>
+        <span class="t-title">bash — 5t4t1cV01d — 80×24</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line" style="--delay:0.2s"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
+        <div class="t-line" style="--delay:0.6s"><span class="t-output">5t4t1cV01d</span></div>
+        <div class="t-line" style="--delay:1.0s"><span class="t-prompt">$</span> <span class="t-cmd">cat /etc/profile</span></div>
+        <div class="t-line" style="--delay:1.4s"><span class="t-comment"># Systems Engineer & Cybersecurity Analyst</span></div>
+        <div class="t-line" style="--delay:1.8s"><span class="t-comment"># Threat analysis, network environments & automation</span></div>
+        <div class="t-line" style="--delay:2.2s"><span class="t-comment"># Active security competitor & technology problem solver</span></div>
+        <div class="t-line" style="--delay:2.6s"><span class="t-prompt">$</span> <span class="t-cmd">ls -la
+            skills/</span></div>
+        <div class="t-line" style="--delay:3.0s"><span class="t-output skill-tag">Python</span> <span
+            class="t-output skill-tag">Bash</span> <span class="t-output skill-tag">Kali Linux</span> <span
+            class="t-output skill-tag">Nmap</span> <span class="t-output skill-tag">Burp Suite</span> <span
+            class="t-output skill-tag">Docker</span></div>
+        <div class="t-line" style="--delay:3.4s"><span class="t-prompt">$</span> <span
+            class="t-cmd">./run_portfolio.sh<span class="cursor-blink">_</span></span></div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card glow-card">
+        <div class="stat-icon"><i class="fa-solid fa-hourglass-start"></i></div>
+        <div class="stat-num-container"
+          style="display: flex; justify-content: center; align-items: baseline; gap: 2px;">
+          <span class="stat-num" data-count="2">0</span>
+          <span
+            style="font-size: 1.8rem; font-weight: 700; color: var(--green); text-shadow: var(--glow-g); line-height: 1;">+</span>
+        </div>
+        <div class="stat-label">Years of<br>Cybersec Study</div>
+      </div>
+      <div class="stat-card glow-card">
+        <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
+        <div class="stat-num" id="writeups-count" data-count="2">0</div>
+        <div class="stat-label">Writeups<br>Published</div>
+      </div>
+      <div class="stat-card glow-card">
+        <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="stat-num" data-count="2">0</div>
+        <div class="stat-label">Certificates<br>Obtained</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST WRITEUPS PREVIEW -->
+  <section class="section latest-writeups">
+    <div class="section-header">
+      <h2><span class="accent">//</span> Latest Writeups</h2>
+      <a href="pages/writeups.html" class="btn-ghost">View all →</a>
+    </div>
+    <div class="writeups-grid" id="homeWriteups">
+      <!-- Filled by JS -->
+    </div>
+  </section>
+
+  <!-- PROJECTS & RESEARCH PREVIEW -->
+  <section class="section projects-preview">
+    <div class="section-header">
+      <h2><span class="accent">//</span> Featured Projects & Research</h2>
+      <a href="pages/projects.html" class="btn-ghost">View all projects →</a>
+    </div>
+    <div class="projects-preview-grid">
+      <!-- Spotlight Thesis Card -->
+      <div class="thesis-preview-card glow-card" onclick="window.location.href='pages/projects.html'"
+        style="cursor: pointer;">
+        <div class="preview-status in-progress">
+          <span class="status-indicator-dot"></span>
+          <span>RESEARCH IN PROGRESS</span>
+        </div>
+        <h3>Wireless Malicious Traffic ML Classifier</h3>
+        <p>Comparative performance analysis of Random Forest, LightGBM, and CNN models on the AWID3 dataset for
+          low-latency edge deployment.</p>
+        <span class="view-details-link">View project details →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <script src="assets/js/writeups-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
