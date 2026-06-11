@@ -54,7 +54,7 @@
             <span class="diff-badge ${diffClass}">${diffLabel}</span>
             <span class="os-badge">${osIcon} ${osLabel}</span>
             ${machine.release_date || machine.completed_date ? `
-              <div style="margin-left: auto; display: flex; gap: 1rem; align-items: center; font-size: 0.68rem; color: var(--text-dim); flex-wrap: wrap;">
+              <div class="writeup-dates">
                 ${machine.release_date ? `<span>Release: ${machine.release_date}</span>` : ''}
                 ${machine.completed_date ? `<span>Completed: ${machine.completed_date}</span>` : ''}
               </div>
@@ -94,6 +94,7 @@
         const htmlContent = marked.parse(body);
         const writeupBody = document.getElementById('writeup-body');
         writeupBody.innerHTML = htmlContent;
+        formatCallouts(writeupBody);
         highlightComments(writeupBody);
         addCopyButtons(writeupBody);
       } else {
@@ -158,6 +159,26 @@
       });
 
       pre.appendChild(btn);
+    });
+  }
+
+  function formatCallouts(container) {
+    container.querySelectorAll('blockquote').forEach(bq => {
+      const firstP = bq.querySelector('p');
+      if (firstP) {
+        const text = firstP.innerHTML;
+        // Detecta patrones como [!INFO] o [!WARNING] (con o sin guion de colapsado)
+        const match = text.match(/^\[!(INFO|WARNING|NOTE|TIP|IMPORTANT|CAUTION)\]-?\s*(.*)/i);
+        if (match) {
+          const type = match[1].toLowerCase();
+          const title = match[2] || type.toUpperCase();
+          
+          bq.classList.add('callout', `callout-${type}`);
+          
+          // Reemplaza el texto feo literal con un título formateado y estilizado
+          firstP.innerHTML = `<strong class="callout-title">// ${title}</strong>`;
+        }
+      }
     });
   }
 })();
