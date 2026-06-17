@@ -75,7 +75,7 @@ Following the discovery of the open ports, a focused service scanning and script
 sudo nmap -p [PORTS] -sC -sV -vvv -n -Pn [IP_TARGET] -oN specific-ports.txt
 ```
 
-*The targeted scan reveals that port 22 is running an **OpenSSH service**, while port 80 hosts an **HTTP web server** that actively redirects incoming traffic to `wingdata.htb`.*
+*The targeted scan reveals that port 22 is running an **OpenSSH service**, while port 80 hosts an **HTTP web server** that actively redirects incoming traffic to* `wingdata.htb`.
 
 ![LAB-HTB-WingData-06.png](../assets/img/writeups/WingData/LAB-HTB-WingData-06.png)
 
@@ -115,7 +115,7 @@ As a result, an unauthenticated remote attacker can inject and execute Lua code,
 
 ## 3. Exploitation
 
-#### Initial Compromise
+### Initial Compromise
 
 After the vulnerability was identified, an open-source search was conducted to locate available exploit code. Through this search, a working [proof of concept (PoC)](https://github.com/4m3rr0r/CVE-2025-47812-poc)  was discovered on GitHub. To proceed with the initial intrusion, this repository was cloned locally for the authentication bypass to be carried out:
 
@@ -142,7 +142,7 @@ With the listener running, the exploit is launched against the target URL`ftp.wi
 
 ![LAB-HTB-WingData-12.gif](../assets/img/writeups/WingData/LAB-HTB-WingData-12.gif)
 
-#### Credentials Extraction
+### Credentials Extraction
 
 With access established as the wingftp user, local post-exploitation enumeration is directly on the target host to locate configuration files containing credentials. First, running processes are checked to locate server installation directory:
 
@@ -166,11 +166,11 @@ cat /opt/wftpserver/Data/1/users/wacky.xml
 
 ![LAB-HTB-WingData-14.png](../assets/img/writeups/WingData/LAB-HTB-WingData-14.png)
 
-#### Offline Password Cracking (On-Attack Workstation)
+### Offline Password Cracking
 
 To decrypt the retrieved hash, the cryptographic algorithm and hashing scheme are analyzed, and a dictionary attack is performed offline on the local machine. The extracted hash has a length of 64 hexadecimal characters (256 bits), matching the exact signature of a SHA-256 algorithm. Furthermore, public technical documentation for Wing FTP Server confirms that user passwords are encrypted using a custom salted scheme where a static salt string (WingFTP) is appended to the plaintext password: sha256(password + "WingFTP").
 
-Hashcat supports this specific format (`sha256($pass.$salt)`) under mode 1410. To crack this, the input must be formatted as `<hash>:<salt>`. The hash and the static salt are written into a text file:
+Hashcat supports this specific format `sha256($pass.$salt)` under mode 1410. To crack this, the input must be formatted as `<hash>:<salt>`. The hash and the static salt are written into a text file:
 
 ```bash
 echo "[HASH_EXTRACTED]:WingFTP" > wacky_hash.txt
@@ -186,7 +186,7 @@ The attack successfully cracks the hash, recovering the plaintext password:
 
 ![LAB-HTB-WingData-15.png](../assets/img/writeups/WingData/LAB-HTB-WingData-15.png)
 
-#### Lateral Movement
+### Lateral Movement
 
 Using the cracked credentials, lateral movement is performed via SSH. An SSH connection is established using the newly compromised username:
 
@@ -226,7 +226,7 @@ The script is found to import the Python `tarfile` module and execute the `extra
 
 ![LAB-HTB-WingData-18.png](../assets/img/writeups/WingData/LAB-HTB-WingData-18.png)
 
-This script is affected by [CVE-2025-4517](https://nvd.nist.gov/vuln/detail/CVE-2025-4517), a serious bug with a CVSS score of 7.5 that impacts Python 3.12.x. The problem is in the `tarfile` module's validation when using the `data` filter. The `extractall` function processes entries in order. If a malicious `.tar` file includes a symlink to a protected folder like `/etc`, followed by a hard link, the validation fails to detect the link chain correctly. This allows the hard link to overwrite important system files like `/etc/sudoers`. Because the script runs as root through `sudo`, this gives a clear path to privilege escalation.
+This script is affected by [CVE-2025-4517](https://nvd.nist.gov/vuln/detail/CVE-2025-4517), a serious bug with a CVSS score of 7.5 that impacts Python 3.12.x. The problem is in the `tarfile` module's validation when using the data filter. The `extractall` function processes entries in order. If a malicious .tar file includes a symlink to a protected folder like `/etc`, followed by a hard link, the validation fails to detect the link chain correctly. This allows the hard link to overwrite important system files like `/etc/sudoers`. Because the script runs as root through `sudo`, this gives a clear path to privilege escalation.
 
 To exploit this vulnerability, a public [proof of concept (PoC)](https://github.com/AzureADTrent/CVE-2025-4517-POC-HTB-WingData) repository designed specifically for this environment is cloned to the local attack machine, and a temporary HTTP server is started to host the exploit script:
 
@@ -241,9 +241,9 @@ python3 -m http.server 8000
 
 ![LAB-HTB-WingData-19.png](../assets/img/writeups/WingData/LAB-HTB-WingData-19.png)
 
-Prior to transferring the code to the target, the `CVE-2025-4517-POC.py` script is audited to verify its operations. It is confirmed that the script generates a custom `.tar` archive containing the required symlink and hard link sequence, executes the vulnerable `sudo` command, forces the overwrite of `/etc/sudoers` to grant root permissions to the `wacky` user, and ultimately spawns a shell.
+Prior to transferring the code to the target, the `CVE-2025-4517-POC.py` script is audited to verify its operations. It is confirmed that the script generates a custom .tar archive containing the required symlink and hard link sequence, executes the vulnerable sudo command, forces the overwrite of `/etc/sudoers` to grant root permissions to the `wacky` user, and ultimately spawns a shell.
 
-Once verified, the working directory on the target machine is shifted to `/tmp`, and the exploit script is downloaded using the `wget` utility:
+Once verified, the working directory on the target machine is shifted to `/tmp`, and the exploit script is downloaded using the wget utility:
 
 ```bash
 cd /tmp
@@ -302,7 +302,7 @@ mv /etc/sudoers.bak /etc/sudoers
 
 ---
 
-## 7. Attack Chain Summary & Indicators of Compromise (IoCs)
+## 7. Attack Chain Summary
 
 The full sequence of compromise, from initial network mapping to root shell access, is summarized below:
 

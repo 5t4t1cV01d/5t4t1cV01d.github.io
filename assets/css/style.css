@@ -1672,7 +1672,7 @@ body {
 }
 
 .writeup-body h3 {
-  color: var(--cyan);
+  color: var(--green);
   font-size: 0.95rem;
   margin: 1.5rem 0 0.5rem;
 }
@@ -1683,15 +1683,31 @@ body {
 
 .writeup-body code {
   background: var(--bg3);
-  border: 1px solid var(--border);
+  border: 1px solid var(--green-mute);
   padding: 0.1em 0.4em;
   border-radius: 2px;
   font-family: var(--font-mono);
   font-size: 0.85em;
-  color: var(--cyan);
+  color: var(--text-bright);
   white-space: pre-wrap;
   word-break: break-word;
   overflow-wrap: break-word;
+}
+
+.writeup-body a {
+  color: var(--orange);
+  text-decoration: none;
+  border-bottom: 1.5px dashed var(--orange);
+  display: inline-block;
+  line-height: 1.1;
+  transition: transform 0.2s ease, text-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.writeup-body a:hover {
+  transform: scale(1.04);
+  color: var(--green);
+  border-bottom: 1px solid var(--green);
+  text-shadow: var(--glow-g);
 }
 
 .writeup-body pre {
