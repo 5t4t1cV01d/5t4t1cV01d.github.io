@@ -39,7 +39,16 @@
     const platClass = (typeof PLAT_CLASS !== 'undefined' && PLAT_CLASS[machine.platform]) || 'plat-htb';
     const diffLabel = (typeof DIFF_MAP !== 'undefined' && DIFF_MAP[machine.difficulty]) || machine.difficulty;
     const osIcon = (typeof OS_ICONS !== 'undefined' && OS_ICONS[machine.os]) || '💻';
-    const osLabel = machine.os.charAt(0).toUpperCase() + machine.os.slice(1);
+    const osLabel = machine.os ? machine.os.charAt(0).toUpperCase() + machine.os.slice(1) : '';
+    const typeIcon = machine.type === 'machine'
+      ? '<i class="fa fa-server"></i>'
+      : machine.type === 'challenge'
+        ? '<i class="fa fa-puzzle-piece"></i>'
+        : '';
+    const typeLabel = machine.type ? machine.type.charAt(0).toUpperCase() + machine.type.slice(1) : '';
+    const typeBadgeHtml = (machine.platform === 'HTB' && machine.type)
+      ? `<span class="type-os-badge">${typeIcon} ${typeLabel}</span>`
+      : '';
     const tagsHtml = (machine.tags || []).map(t => `<span class="tag">${t}</span>`).join('\n');
 
     const platformLogo = (typeof PLAT_LOGOS !== 'undefined' && PLAT_LOGOS[machine.platform]) || 'Hackthebox-Logo.svg';
@@ -51,8 +60,9 @@
           <h1>${machine.title}</h1>
           <div class="card-meta" style="margin-bottom:0.8rem">
             <img src="../assets/icon/${platformLogo}" class="writeup-platform-logo" alt="${machine.platform}" />
-            <span class="diff-badge ${diffClass}">${diffLabel}</span>
-            <span class="os-badge">${osIcon} ${osLabel}</span>
+             <span class="diff-badge ${diffClass}">${diffLabel}</span>
+             ${typeBadgeHtml}
+             ${machine.os ? `<span class="os-badge">${osIcon} ${osLabel}</span>` : ''}
             ${machine.release_date || machine.completed_date ? `
               <div class="writeup-dates">
                 ${machine.release_date ? `<span>Release: ${machine.release_date}</span>` : ''}

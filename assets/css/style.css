@@ -631,6 +631,34 @@ body {
   --diff-color: var(--red);
 }
 
+/* ── HTB TYPE BADGE ── */
+.type-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.type-machine {
+  background: transparent;
+  color: var(--text-dim);
+  border: none;
+  font-weight: 400;
+  text-transform: none;
+}
+
+
+.type-challenge {
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--cyan);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
 .os-badge {
   font-size: 0.75rem;
   color: var(--text-dim);
@@ -642,6 +670,34 @@ body {
 .os-badge i {
   font-size: 0.85rem;
   /* Agrandamos un poco para darle más presencia visual */
+}
+
+/* ── TYPE ICON-ONLY INDICATOR ── */
+.type-icon-only {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+/* ── COMBINED TYPE · OS BADGE (Option A) ── */
+.type-os-badge {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.type-os-badge i {
+  font-size: 0.82rem;
+}
+
+.type-os-sep {
+  color: var(--border);
+  font-size: 0.8rem;
+  margin: 0 0.1rem;
+  user-select: none;
 }
 
 .card-date {

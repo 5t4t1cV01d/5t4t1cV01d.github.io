@@ -39,6 +39,17 @@
       <button class="filter-btn" data-filter="platform" data-value="THM">TryHackMe</button>
       <button class="filter-btn" data-filter="platform" data-value="DockerLabs">DockerLabs</button>
     </div>
+    <!-- HTB-only type filter: shown/hidden by JS -->
+    <div class="filter-row htb-type-row" id="htbTypeRow" style="display:none;">
+      <span class="filter-label">Type:</span>
+      <button class="filter-btn active" data-filter="type" data-value="all">All</button>
+      <button class="filter-btn" data-filter="type" data-value="machine">
+        <i class="fa fa-server"></i> Machine
+      </button>
+      <button class="filter-btn" data-filter="type" data-value="challenge">
+        <i class="fa fa-puzzle-piece"></i> Challenge
+      </button>
+    </div>
     <div class="filter-row">
       <span class="filter-label">Difficulty:</span>
       <button class="filter-btn active" data-filter="diff" data-value="all">All</button>

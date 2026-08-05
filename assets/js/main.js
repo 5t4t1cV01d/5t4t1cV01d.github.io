@@ -20,12 +20,27 @@ function animateCounters() {
 // ── RENDER MACHINE CARD ──────────────────────────────────────
 function renderCard(m, linkPrefix = '') {
   const diffClass = `diff-${m.difficulty}`;
-  const platClass  = PLAT_CLASS[m.platform] || 'plat-htb';
-  const diffLabel  = DIFF_MAP[m.difficulty] || m.difficulty;
-  const osIcon     = OS_ICONS[m.os] || '💻';
-  const osLabel    = m.os.charAt(0).toUpperCase() + m.os.slice(1);
-  const href       = linkPrefix + `writeup.html?id=${m.id}`;
-  const tags       = (m.tags || []).slice(0, 3).map(t => `<span class="tag">${t}</span>`).join('');
+  const platClass = PLAT_CLASS[m.platform] || 'plat-htb';
+  const diffLabel = DIFF_MAP[m.difficulty] || m.difficulty;
+  const osIcon = OS_ICONS[m.os] || '💻';
+  const osLabel = m.os ? m.os.charAt(0).toUpperCase() + m.os.slice(1) : '';
+  const href = linkPrefix + `writeup.html?id=${m.id}`;
+  const tags = (m.tags || []).slice(0, 3).map(t => `<span class="tag">${t}</span>`).join('');
+
+  // Type indicator: icon-only (no text), same visual weight as OS badge
+  // [ EASY ]  ⚙  🐧 Linux  2026-04-23
+  let metaBadge = '';
+  if (m.platform === 'HTB' && m.type) {
+    const typeIcon = m.type === 'machine'
+      ? '<i class="fa fa-server" title="Machine"></i>'
+      : '<i class="fa fa-puzzle-piece" title="Challenge"></i>';
+    const osPart = (m.type === 'machine' && m.os)
+      ? `<span class="os-badge" style="margin-left:0" title="${osLabel}">${osIcon}</span>`
+      : '';
+    metaBadge = `<span class="type-icon-only" title="${m.type.charAt(0).toUpperCase() + m.type.slice(1)}">${typeIcon}</span>${osPart}`;
+  } else if (m.os) {
+    metaBadge = `<span class="os-badge" title="${osLabel}">${osIcon}</span>`;
+  }
 
   return `
     <a class="machine-card" href="${href}"
@@ -37,7 +52,7 @@ function renderCard(m, linkPrefix = '') {
       </div>
       <div class="card-meta">
         <span class="diff-badge ${diffClass}">${diffLabel}</span>
-        <span class="os-badge">${osIcon} ${osLabel}</span>
+        ${metaBadge}
         <span class="card-date">${m.date}</span>
       </div>
       <p class="card-desc">${m.desc}</p>
@@ -52,12 +67,12 @@ function renderCard(m, linkPrefix = '') {
 const homeGrid = document.getElementById('homeWriteups');
 if (homeGrid) {
   homeGrid.innerHTML = WRITEUPS.slice(0, 3).map(m => renderCard(m, 'pages/')).join('');
-  
+
   const writeupsCountEl = document.getElementById('writeups-count');
   if (writeupsCountEl) {
     writeupsCountEl.setAttribute('data-count', WRITEUPS.length);
   }
-  
+
   animateCounters();
 }
 
@@ -65,19 +80,53 @@ if (homeGrid) {
 const allGrid = document.getElementById('allWriteups');
 if (allGrid) {
   let activePlatform = 'all';
-  let activeDiff     = 'all';
-  let activeOS       = 'all';
+  let activeDiff = 'all';
+  let activeOS = 'all';
+  let activeType = 'all';
+
+  const htbTypeRow = document.getElementById('htbTypeRow');
+  const osRow = document.querySelector('[data-filter="os"]')?.closest('.filter-row');
+
+  // Show/hide the HTB-only type row and manage OS row visibility
+  function updateConditionalRows() {
+    const isHTB = activePlatform === 'HTB';
+    const isChallenge = activeType === 'challenge';
+
+    // Type row: visible only when HTB is selected
+    if (htbTypeRow) {
+      htbTypeRow.style.display = isHTB ? 'flex' : 'none';
+      if (!isHTB) {
+        activeType = 'all';
+        document.querySelectorAll('[data-filter="type"]').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.value === 'all');
+        });
+      }
+    }
+
+    // OS row: hidden when filtering Challenges (they have no OS)
+    if (osRow) {
+      osRow.style.display = isChallenge ? 'none' : 'flex';
+      if (isChallenge) {
+        activeOS = 'all';
+        document.querySelectorAll('[data-filter="os"]').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.value === 'all');
+        });
+      }
+    }
+  }
 
   function renderAll() {
     const filtered = WRITEUPS.filter(m => {
       const pMatch = activePlatform === 'all' || m.platform === activePlatform;
-      const dMatch = activeDiff     === 'all' || m.difficulty === activeDiff;
-      const oMatch = activeOS       === 'all' || m.os === activeOS;
-      return pMatch && dMatch && oMatch;
+      const dMatch = activeDiff === 'all' || m.difficulty === activeDiff;
+      const oMatch = activeOS === 'all' || m.os === activeOS;
+      // Type filter only applies when platform is HTB; for other platforms always pass
+      const tMatch = activeType === 'all' || (m.platform === 'HTB' && m.type === activeType);
+      return pMatch && dMatch && oMatch && tMatch;
     });
 
     const countEl = document.getElementById('writeupCount');
-    if (countEl) countEl.innerHTML = `Showing <span>${filtered.length}</span> of <span>${WRITEUPS.length}</span> machines`;
+    if (countEl) countEl.innerHTML = `Showing <span>${filtered.length}</span> of <span>${WRITEUPS.length}</span> writeups`;
 
     allGrid.innerHTML = filtered.length
       ? filtered.map(m => renderCard(m)).join('')
@@ -86,13 +135,15 @@ if (allGrid) {
 
   function setFilter(type, val) {
     if (type === 'platform') activePlatform = val;
-    if (type === 'diff')     activeDiff     = val;
-    if (type === 'os')       activeOS       = val;
+    if (type === 'diff') activeDiff = val;
+    if (type === 'os') activeOS = val;
+    if (type === 'type') activeType = val;
 
     document.querySelectorAll(`[data-filter="${type}"]`).forEach(btn => {
       btn.classList.toggle('active', btn.dataset.value === val);
     });
 
+    updateConditionalRows();
     renderAll();
   }
 
