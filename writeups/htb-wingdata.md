@@ -1,13 +1,17 @@
 ---
-title: "WingData"
+title: WingData
 platform: HTB
 difficulty: Easy
 so: Linux
 fecha: 2026-04-23
 fecha_lanzamiento: 2026-02-14
 fecha_completado: 2026-04-23
-tags: [CVE-2025-47812, RCE, Lua, CVE-2025-4517, Privilege Escalation]
-desc: "Unauthenticated RCE in Wing FTP Server v7.4.3 (CVE-2025-47812) and privilege escalation abusing python tar extraction (CVE-2025-4517)."
+tags:
+  - CVE-2025-47812
+  - RCE
+  - Lua
+  - CVE-2025-4517
+desc: Unauthenticated RCE in Wing FTP Server v7.4.3 (CVE-2025-47812) and privilege escalation abusing python tar extraction (CVE-2025-4517).
 ---
 
 ## Tools Utilized
