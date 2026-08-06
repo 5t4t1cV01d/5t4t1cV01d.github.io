@@ -15,3 +15,6 @@ desktop.ini
 # Python cache files
 __pycache__/
 *.pyc
+
+# Private writeups (plaintext — never push to GitHub)
+_private/

@@ -17,12 +17,15 @@ const WRITEUPS = [
     tags: ["CVE-2025-47812", "RCE", "Lua", "CVE-2025-4517"],
     desc: "Unauthenticated RCE in Wing FTP Server v7.4.3 (CVE-2025-47812) and privilege escalation abusing python tar extraction (CVE-2025-4517)."
   },
+
   /* DRAFT — commented out until writeup is complete
+    */
   {
     id: "htb-lame",
     title: "Lame",
     platform: "HTB",
     type: "machine",
+    locked: true,
     difficulty: "easy",
     os: "linux",
     date: "2025-05-15",
@@ -32,7 +35,7 @@ const WRITEUPS = [
     tags: ["Samba", "CVE-2007-2447", "RCE", "Metasploit"],
     desc: "Exploitation of the famous CVE-2007-2447 bug in Samba 3.0.20 to obtain a root shell directly."
   },
-  */
+
 ];
 
 // Helpers

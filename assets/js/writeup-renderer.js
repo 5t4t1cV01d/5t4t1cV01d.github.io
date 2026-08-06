@@ -80,51 +80,158 @@
     `;
   }
 
-  // 5. Descargar y procesar el archivo Markdown (.md)
-  fetch(`../writeups/${machine.id}.md`)
-    .then(r => {
-      if (!r.ok) {
-        throw new Error(`Código de estado HTTP: ${r.status}`);
-      }
-      return r.text();
-    })
-    .then(text => {
-      // Remover Front Matter (YAML header entre '---') si está presente
-      let body = text;
-      if (text.startsWith('---')) {
-        const parts = text.split('---');
-        if (parts.length >= 3) {
-          // El cuerpo del markdown empieza después del segundo divisor '---'
-          body = parts.slice(2).join('---').trim();
-        }
+  // 5. Cargar contenido — con soporte para writeups bloqueados
+  const writeupBody = document.getElementById('writeup-body');
+
+  if (machine.locked) {
+    const isChallenge = machine.type === 'challenge';
+    const targetTypeStr = isChallenge ? 'challenge' : 'machine';
+    const flagTypeStr   = isChallenge ? 'challenge flag' : 'root flag';
+    const subtitleText  = `Active ${targetTypeStr} — enter the ${flagTypeStr} to access the writeup. Once retired, it will become public.`;
+
+    // ── WRITEUP BLOQUEADO: mostrar pantalla de unlock ──────────
+    writeupBody.innerHTML = `
+      <div class="unlock-terminal" id="unlockTerminal">
+        <div class="unlock-bar">
+          <div class="unlock-bar-dots">
+            <span class="d-red"></span>
+            <span class="d-yellow"></span>
+            <span class="d-green"></span>
+          </div>
+          <span>bash — unlock_writeup.sh — ${machine.title}</span>
+        </div>
+        <div class="unlock-body">
+          <div class="unlock-icon-row">
+            <span class="unlock-lock-icon"><i class="fa-solid fa-lock"></i></span>
+            <div>
+              <div class="unlock-title">WRITEUP LOCKED</div>
+              <div class="unlock-subtitle">${subtitleText}</div>
+            </div>
+          </div>
+          <div class="unlock-prompt-line">
+            <span class="t-prompt">$</span>
+            <span class="t-cmd">./unlock_writeup.sh --${targetTypeStr} ${machine.id}</span>
+          </div>
+          <div class="unlock-input-group">
+            <input
+              class="unlock-input"
+              id="flagInput"
+              type="text"
+              placeholder="${isChallenge ? 'HTB{...} / Flag' : 'HTB{...} / Root flag'}"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="unlock-btn" id="unlockBtn" onclick="attemptUnlock()">
+              [ UNLOCK ]
+            </button>
+          </div>
+          <div class="unlock-error" id="unlockError">
+            [!] Access denied — wrong flag.
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Cargar el archivo .md cifrado en memoria para usarlo al desbloquear
+    let encryptedBlob = null;
+    fetch(`../writeups/${machine.id}.md`)
+      .then(r => r.ok ? r.text() : Promise.reject(r.status))
+      .then(text => { encryptedBlob = text.trim(); })
+      .catch(() => { encryptedBlob = null; });
+
+    // Permitir Enter en el input
+    document.getElementById('flagInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') attemptUnlock();
+    });
+
+    window.attemptUnlock = function () {
+      const flag = document.getElementById('flagInput').value.trim();
+      const terminal = document.getElementById('unlockTerminal');
+      const errorEl = document.getElementById('unlockError');
+      const btn = document.getElementById('unlockBtn');
+
+      if (!flag) return;
+      if (!encryptedBlob) {
+        errorEl.textContent = '[!] Error — no se pudo cargar el archivo cifrado.';
+        errorEl.classList.add('visible');
+        return;
       }
 
-      // Convertir Markdown a HTML usando la biblioteca Marked
-      if (typeof marked !== 'undefined') {
+      btn.disabled = true;
+      btn.textContent = 'Verificando...';
+
+      try {
+        const bytes = CryptoJS.AES.decrypt(encryptedBlob, flag);
+        const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+
+        if (!decrypted || decrypted.length < 10) {
+          throw new Error('wrong flag');
+        }
+
+        // ✅ FLAG CORRECTA — renderizar contenido
+        let body = decrypted;
+        if (decrypted.startsWith('---')) {
+          const parts = decrypted.split('---');
+          if (parts.length >= 3) body = parts.slice(2).join('---').trim();
+        }
+
         const htmlContent = marked.parse(body);
-        const writeupBody = document.getElementById('writeup-body');
-        writeupBody.innerHTML = htmlContent;
+        writeupBody.innerHTML = `<div class="writeup-unlocked">${htmlContent}</div>`;
         formatCallouts(writeupBody);
         highlightComments(writeupBody);
         addCopyButtons(writeupBody);
-      } else {
-        throw new Error('The "marked" library did not load correctly.');
+
+      } catch (err) {
+        // ❌ FLAG INCORRECTA — shake + mensaje de error
+        terminal.classList.remove('shake');
+        void terminal.offsetWidth; // reflow para reiniciar animación
+        terminal.classList.add('shake');
+        setTimeout(() => terminal.classList.remove('shake'), 600);
+
+        errorEl.classList.add('visible');
+        btn.disabled = false;
+        btn.textContent = '[ UNLOCK ]';
       }
-    })
-    .catch(err => {
-      console.error('Error loading the writeup:', err);
-      document.getElementById('writeup-body').innerHTML = `
-        <p style="color:var(--red); font-weight:bold; margin-top:2rem;">
-          [!] Error loading the notes file.
-        </p>
-        <p style="color:var(--text-dim); margin-top:0.5rem; font-size:0.8rem;">
-          Details: ${err.message}
-        </p>
-        <p style="color:var(--text-dim); font-size:0.8rem;">
-          Path searched: writeups/${machine.id}.md
-        </p>
-      `;
-    });
+    };
+
+  } else {
+    // ── WRITEUP PÚBLICO: flujo normal ──────────────────────────
+    fetch(`../writeups/${machine.id}.md`)
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.text();
+      })
+      .then(text => {
+        let body = text;
+        if (text.startsWith('---')) {
+          const parts = text.split('---');
+          if (parts.length >= 3) body = parts.slice(2).join('---').trim();
+        }
+        if (typeof marked !== 'undefined') {
+          writeupBody.innerHTML = marked.parse(body);
+          formatCallouts(writeupBody);
+          highlightComments(writeupBody);
+          addCopyButtons(writeupBody);
+        } else {
+          throw new Error('La librería "marked" no se cargó.');
+        }
+      })
+      .catch(err => {
+        console.error('Error cargando writeup:', err);
+        writeupBody.innerHTML = `
+          <p style="color:var(--red); font-weight:bold; margin-top:2rem;">
+            [!] Error loading the notes file.
+          </p>
+          <p style="color:var(--text-dim); margin-top:0.5rem; font-size:0.8rem;">
+            Details: ${err.message}
+          </p>
+          <p style="color:var(--text-dim); font-size:0.8rem;">
+            Path searched: writeups/${machine.id}.md
+          </p>
+        `;
+      });
+  }
+
 
   function highlightComments(container) {
     container.querySelectorAll('pre code').forEach(codeBlock => {
@@ -182,9 +289,9 @@
         if (match) {
           const type = match[1].toLowerCase();
           const title = match[2] || type.toUpperCase();
-          
+
           bq.classList.add('callout', `callout-${type}`);
-          
+
           // Reemplaza el texto feo literal con un título formateado y estilizado
           firstP.innerHTML = `<strong class="callout-title">// ${title}</strong>`;
         }
