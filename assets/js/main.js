@@ -90,7 +90,6 @@ if (allGrid) {
   // Show/hide the HTB-only type row and manage OS row visibility
   function updateConditionalRows() {
     const isHTB = activePlatform === 'HTB';
-    const isChallenge = activeType === 'challenge';
 
     // Type row: visible only when HTB is selected
     if (htbTypeRow) {
@@ -102,6 +101,9 @@ if (allGrid) {
         });
       }
     }
+
+    // Evaluate AFTER the potential reset above so it reads the updated activeType
+    const isChallenge = activeType === 'challenge';
 
     // OS row: hidden when filtering Challenges (they have no OS)
     if (osRow) {

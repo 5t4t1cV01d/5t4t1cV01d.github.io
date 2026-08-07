@@ -14,7 +14,7 @@ const WRITEUPS = [
     release_date: "2026-02-14",
     completed_date: "2026-04-23",
     avatar: "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/d419202507a3bbf06e764c1c4a524f66.png",
-    tags: ["CVE-2025-47812", "RCE", "Lua", "CVE-2025-4517"],
+    tags: ["CVE-2025-47812", "Lua", "CVE-2025-4517"],
     desc: "Unauthenticated RCE in Wing FTP Server v7.4.3 (CVE-2025-47812) and privilege escalation abusing python tar extraction (CVE-2025-4517)."
   },
 
@@ -32,7 +32,7 @@ const WRITEUPS = [
     release_date: "2007-05-15",
     completed_date: "2025-05-15",
     avatar: "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/fb2d9f98400e3c802a0d7145e125c4ff.png",
-    tags: ["Samba", "CVE-2007-2447", "RCE", "Metasploit"],
+    tags: ["Samba", "CVE-2007-2447", "Metasploit"],
     desc: "Exploitation of the famous CVE-2007-2447 bug in Samba 3.0.20 to obtain a root shell directly."
   },
 

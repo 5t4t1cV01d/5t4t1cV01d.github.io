@@ -91,7 +91,7 @@
 
     // ── WRITEUP BLOQUEADO: mostrar pantalla de unlock ──────────
     writeupBody.innerHTML = `
-      <div class="unlock-terminal" id="unlockTerminal">
+      <div class="unlock-terminal writeup-unlocked" id="unlockTerminal">
         <div class="unlock-bar">
           <div class="unlock-bar-dots">
             <span class="d-red"></span>
@@ -208,7 +208,7 @@
           if (parts.length >= 3) body = parts.slice(2).join('---').trim();
         }
         if (typeof marked !== 'undefined') {
-          writeupBody.innerHTML = marked.parse(body);
+          writeupBody.innerHTML = `<div class="writeup-unlocked">${marked.parse(body)}</div>`;
           formatCallouts(writeupBody);
           highlightComments(writeupBody);
           addCopyButtons(writeupBody);
