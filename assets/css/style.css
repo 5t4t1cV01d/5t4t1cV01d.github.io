@@ -2243,3 +2243,40 @@ body {
 .writeup-unlocked {
   animation: fadeInUp 0.5s ease forwards;
 }
+
+/* ── UNLOCK TERMINAL — RESPONSIVE (móvil) ── */
+@media (max-width: 600px) {
+  .unlock-terminal {
+    margin: 1.5rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .unlock-body {
+    padding: 0.8rem 1.2rem 1.4rem;
+  }
+
+  .unlock-title {
+    font-size: 1.05rem;
+  }
+
+  .unlock-subtitle {
+    font-size: 0.72rem;
+  }
+
+  /* Input + botón se apilan verticalmente */
+  .unlock-input-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .unlock-btn {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    text-align: center;
+  }
+
+  .unlock-prompt-line {
+    font-size: 0.72rem;
+    word-break: break-all;
+  }
+}
