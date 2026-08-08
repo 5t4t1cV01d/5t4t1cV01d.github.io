@@ -184,6 +184,7 @@
       } catch (err) {
         // ❌ FLAG INCORRECTA — shake + mensaje de error
         terminal.classList.remove('shake');
+        terminal.classList.remove('writeup-unlocked');
         void terminal.offsetWidth; // reflow para reiniciar animación
         terminal.classList.add('shake');
         setTimeout(() => terminal.classList.remove('shake'), 600);

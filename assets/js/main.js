@@ -47,7 +47,7 @@ function renderCard(m, linkPrefix = '') {
        style="--diff-color: var(--${m.difficulty === 'easy' ? 'green' : m.difficulty === 'medium' ? 'orange' : 'red'})">
       <div class="card-top">
         ${m.avatar ? `<img src="${m.avatar}" class="machine-avatar-mini" alt="${m.title}" />` : ''}
-        <span class="card-title" ${m.avatar ? 'style="margin-left: 0.6rem; flex: 1;"' : ''}>${m.title}${m.locked ? ' <span class="lock-badge"><i class="fa-solid fa-lock"></i> Active</span>' : ''}</span>
+        <span class="card-title" ${m.avatar ? 'style="margin-left: 0.1rem; flex: 1;"' : ''}>${m.title}${m.locked ? ' <span class="lock-badge"><i class="fa-solid fa-lock"></i> Active</span>' : ''}</span>
         <img src="${linkPrefix ? '' : '../'}assets/icon/${(typeof PLAT_LOGOS !== 'undefined' && PLAT_LOGOS[m.platform]) || 'Hackthebox-Logo.svg'}" class="card-platform-logo" alt="${m.platform}" />
       </div>
       <div class="card-meta">

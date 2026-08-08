@@ -15,7 +15,7 @@
   --cyan-dim: #00cccc;
   --red: #ff2d2d;
   --orange: #ff8c00;
-  --yellow: #ffe600;
+  --yellow: #eed202;
   --text: #c8d8c8;
   --text-dim: #688068;
   --text-bright: #e8f4e8;
@@ -540,7 +540,7 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 4px;
-  border: 1px solid var(--border);
+  border: none;
   flex-shrink: 0;
 }
 
@@ -1984,9 +1984,9 @@ body {
   align-items: center;
   gap: 0.3rem;
   font-size: 0.65rem;
-  color: var(--orange);
-  border: 1px solid rgba(255, 140, 0, 0.3);
-  background: rgba(255, 140, 0, 0.07);
+  color: var(--yellow);
+  border: 1px solid var(--orange);
+  background: rgba(255, 140, 0, 0.15);
   padding: 1px 6px;
   border-radius: 2px;
   text-transform: uppercase;
@@ -2058,7 +2058,7 @@ body {
 
 .unlock-lock-icon {
   font-size: 2rem;
-  color: var(--orange);
+  color: var(--yellow);
   animation: lockPulse 2.5s ease-in-out infinite;
 }
 
@@ -2070,7 +2070,7 @@ body {
   }
 
   50% {
-    text-shadow: 0 0 12px rgba(255, 140, 0, 0.7);
+    text-shadow: 0 0 12px var(--orange);
   }
 }
 
