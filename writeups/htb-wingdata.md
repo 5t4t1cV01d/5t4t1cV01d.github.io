@@ -2,10 +2,10 @@
 title: WingData
 platform: HTB
 difficulty: Easy
-so: Linux
-fecha: 2026-04-23
-fecha_lanzamiento: 2026-02-14
-fecha_completado: 2026-04-23
+os: Linux
+date: 2026-04-23
+release_date: 2026-02-14
+completed_date: 2026-04-23
 tags:
   - CVE-2025-47812
   - RCE
