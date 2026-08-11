@@ -36,11 +36,11 @@
       <span class="filter-label">Platform:</span>
       <button class="filter-btn active" data-filter="platform" data-value="all">All</button>
       <button class="filter-btn" data-filter="platform" data-value="HTB">HackTheBox</button>
+      <button class="filter-btn" data-filter="platform" data-value="CyLab">CyLab</button>
       <button class="filter-btn" data-filter="platform" data-value="THM">TryHackMe</button>
       <button class="filter-btn" data-filter="platform" data-value="DockerLabs">DockerLabs</button>
     </div>
-    <!-- HTB-only type filter: shown/hidden by JS -->
-    <div class="filter-row htb-type-row" id="htbTypeRow" style="display:none;">
+    <div class="filter-row" id="typeRow">
       <span class="filter-label">Type:</span>
       <button class="filter-btn active" data-filter="type" data-value="all">All</button>
       <button class="filter-btn" data-filter="type" data-value="machine">
@@ -57,12 +57,17 @@
       <button class="filter-btn" data-filter="diff" data-value="medium" style="color:var(--orange)">Medium</button>
       <button class="filter-btn" data-filter="diff" data-value="hard" style="color:var(--red)">Hard</button>
     </div>
-    <div class="filter-row">
+    <div class="filter-row" id="osRow" style="display:none;">
       <span class="filter-label">OS:</span>
       <button class="filter-btn active" data-filter="os" data-value="all">All</button>
       <button class="filter-btn" data-filter="os" data-value="linux"><i class="fa-brands fa-linux"></i> Linux</button>
       <button class="filter-btn" data-filter="os" data-value="windows"><i class="fa-brands fa-windows"></i>
         Windows</button>
+    </div>
+    <div class="filter-row" id="categoryRow" style="display:none;">
+      <span class="filter-label">Category:</span>
+      <button class="filter-btn active" data-filter="category" data-value="all">All</button>
+      <button class="filter-btn" data-filter="category" data-value="reversing">Reversing</button>
     </div>
     <p class="writeup-count" id="writeupCount"></p>
   </div>

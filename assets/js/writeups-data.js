@@ -8,13 +8,14 @@ const WRITEUPS = [
     title: "ARMs Race",
     platform: "HTB",
     type: "challenge",
+    category: "reversing",
     locked: true,
     difficulty: "easy",
     os: null,
     date: "2026-07-23",
     release_date: "2024-02-16",
     completed_date: "2026-07-23",
-    avatar: "/assets/icon/HTB-Reversing.svg",
+    avatar: "/assets/icon/Hackthebox-Reversing.svg",
     tags: ["Reversing", "ARM", "Unicorn Engine"],
     desc: "Automated solve of a 50-level timed ARM opcode challenge using Unicorn Engine emulation to compute register r0 within a strict server-imposed timeout."
   },
@@ -56,9 +57,10 @@ const OS_ICONS = {
   windows: '<i class="fa-brands fa-windows"></i>'
 };
 const DIFF_MAP = { easy: "Easy", medium: "Medium", hard: "Hard" };
-const PLAT_CLASS = { HTB: "plat-htb", THM: "plat-thm", DockerLabs: "plat-docker" };
+const PLAT_CLASS = { HTB: "plat-htb", CyLab: "plat-cylab", THM: "plat-thm", DockerLabs: "plat-docker" };
 const PLAT_LOGOS = {
   HTB: "Hackthebox-Logo.svg",
+  CyLab: "CyLab-Logo.svg",
   THM: "Tryhackme-Logo.svg",
   DockerLabs: "Docker-Logo.svg"
 };

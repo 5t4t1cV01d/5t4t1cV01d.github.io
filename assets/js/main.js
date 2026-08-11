@@ -83,34 +83,32 @@ if (allGrid) {
   let activeDiff = 'all';
   let activeOS = 'all';
   let activeType = 'all';
+  let activeCategory = 'all';
 
-  const htbTypeRow = document.getElementById('htbTypeRow');
-  const osRow = document.querySelector('[data-filter="os"]')?.closest('.filter-row');
+  const osRow = document.getElementById('osRow');
+  const categoryRow = document.getElementById('categoryRow');
 
-  // Show/hide the HTB-only type row and manage OS row visibility
   function updateConditionalRows() {
-    const isHTB = activePlatform === 'HTB';
+    const isMachine = activeType === 'machine';
+    const isChallenge = activeType === 'challenge';
 
-    // Type row: visible only when HTB is selected
-    if (htbTypeRow) {
-      htbTypeRow.style.display = isHTB ? 'flex' : 'none';
-      if (!isHTB) {
-        activeType = 'all';
-        document.querySelectorAll('[data-filter="type"]').forEach(btn => {
+    // OS row: visible only when Machine is selected
+    if (osRow) {
+      osRow.style.display = isMachine ? 'flex' : 'none';
+      if (!isMachine) {
+        activeOS = 'all';
+        document.querySelectorAll('[data-filter="os"]').forEach(btn => {
           btn.classList.toggle('active', btn.dataset.value === 'all');
         });
       }
     }
 
-    // Evaluate AFTER the potential reset above so it reads the updated activeType
-    const isChallenge = activeType === 'challenge';
-
-    // OS row: hidden when filtering Challenges (they have no OS)
-    if (osRow) {
-      osRow.style.display = isChallenge ? 'none' : 'flex';
-      if (isChallenge) {
-        activeOS = 'all';
-        document.querySelectorAll('[data-filter="os"]').forEach(btn => {
+    // Category row: visible only when Challenge is selected
+    if (categoryRow) {
+      categoryRow.style.display = isChallenge ? 'flex' : 'none';
+      if (!isChallenge) {
+        activeCategory = 'all';
+        document.querySelectorAll('[data-filter="category"]').forEach(btn => {
           btn.classList.toggle('active', btn.dataset.value === 'all');
         });
       }
@@ -122,9 +120,9 @@ if (allGrid) {
       const pMatch = activePlatform === 'all' || m.platform === activePlatform;
       const dMatch = activeDiff === 'all' || m.difficulty === activeDiff;
       const oMatch = activeOS === 'all' || m.os === activeOS;
-      // Type filter only applies when platform is HTB; for other platforms always pass
-      const tMatch = activeType === 'all' || (m.platform === 'HTB' && m.type === activeType);
-      return pMatch && dMatch && oMatch && tMatch;
+      const tMatch = activeType === 'all' || m.type === activeType;
+      const cMatch = activeCategory === 'all' || (m.category && m.category.toLowerCase() === activeCategory.toLowerCase());
+      return pMatch && dMatch && oMatch && tMatch && cMatch;
     });
 
     const countEl = document.getElementById('writeupCount');
@@ -140,6 +138,7 @@ if (allGrid) {
     if (type === 'diff') activeDiff = val;
     if (type === 'os') activeOS = val;
     if (type === 'type') activeType = val;
+    if (type === 'category') activeCategory = val;
 
     document.querySelectorAll(`[data-filter="${type}"]`).forEach(btn => {
       btn.classList.toggle('active', btn.dataset.value === val);
