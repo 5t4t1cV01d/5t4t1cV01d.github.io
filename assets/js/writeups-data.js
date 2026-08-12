@@ -31,7 +31,7 @@ const WRITEUPS = [
     completed_date: "2026-07-23",
     avatar: "/assets/icon/Hackthebox-Reversing.svg",
     tags: ["ARM", "Unicorn Engine"],
-    desc: "Automated solve of a 50-level timed ARM opcode challenge using Unicorn Engine emulation to compute register r0 within a strict server-imposed timeout."
+    desc: "Automated solve of a 50-level timed ARM opcode challenge using Unicorn Engine emulation to compute register r0 within a timeout."
   },
   /*this is a test in tha block machine or challenge*/
   {

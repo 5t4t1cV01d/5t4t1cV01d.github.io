@@ -493,6 +493,7 @@ body {
 .writeups-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: 1fr;
   gap: 1.2rem;
 }
 
@@ -887,7 +888,6 @@ body {
   gap: 1rem;
   font-size: 0.75rem;
   color: var(--text-dim);
-  margin-top: 4rem;
 }
 
 .footer-links {
@@ -2293,6 +2293,12 @@ body {
   .unlock-prompt-line {
     font-size: 0.72rem;
     word-break: break-all;
+  }
+
+  /* Forzar que las etiquetas del filtro ocupen toda la línea en móviles */
+  .filter-label {
+    width: 100%;
+    margin-bottom: 0.3rem;
   }
 }
 
