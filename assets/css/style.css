@@ -1895,10 +1895,11 @@ body {
 /* ── TABLAS DE WRITEUPS RESPONSIVAS ── */
 .writeup-body table {
   display: block;
-  width: 100%;
+  width: max-content;
+  max-width: 100%;
   overflow-x: auto;
   border-collapse: collapse;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
   border: 1px solid var(--border);
 }
 
@@ -2288,4 +2289,9 @@ body {
     font-size: 0.72rem;
     word-break: break-all;
   }
+}
+
+/* Ajuste específico para el logo de CyLab que es más angosto */
+img[src*="CyLab-Logo"] {
+  transform: scale(1.35);
 }

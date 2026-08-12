@@ -30,7 +30,7 @@ function renderCard(m, linkPrefix = '') {
   // Type indicator: icon-only (no text), same visual weight as OS badge
   // [ EASY ]  ⚙  🐧 Linux  2026-04-23
   let metaBadge = '';
-  if (m.platform === 'HTB' && m.type) {
+  if (m.type) {
     const typeIcon = m.type === 'machine'
       ? '<i class="fa fa-server" title="Machine"></i>'
       : '<i class="fa fa-puzzle-piece" title="Challenge"></i>';

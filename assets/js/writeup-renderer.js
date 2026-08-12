@@ -46,7 +46,7 @@
         ? '<i class="fa fa-puzzle-piece"></i>'
         : '';
     const typeLabel = machine.type ? machine.type.charAt(0).toUpperCase() + machine.type.slice(1) : '';
-    const typeBadgeHtml = (machine.platform === 'HTB' && machine.type)
+    const typeBadgeHtml = (machine.type)
       ? `<span class="type-os-badge">${typeIcon} ${typeLabel}</span>`
       : '';
     const tagsHtml = (machine.tags || []).map(t => `<span class="tag">${t}</span>`).join('\n');
@@ -63,6 +63,7 @@
              <span class="diff-badge ${diffClass}">${diffLabel}</span>
              ${typeBadgeHtml}
              ${machine.os ? `<span class="os-badge">${osIcon} ${osLabel}</span>` : ''}
+             ${machine.category ? `<span class="os-badge">${machine.category.charAt(0).toUpperCase() + machine.category.slice(1)}</span>` : ''}
             ${machine.release_date || machine.completed_date ? `
               <div class="writeup-dates">
                 ${machine.release_date ? `<span>Release: ${machine.release_date}</span>` : ''}
