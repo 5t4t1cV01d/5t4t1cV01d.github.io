@@ -523,6 +523,11 @@ body {
   box-shadow: 0 0 10px var(--diff-color, var(--green));
 }
 
+/* Aumentar el resplandor de las tarjetas HARD (Rojas) porque el rojo es menos luminoso */
+.machine-card[style*="--red"]::before {
+  box-shadow: 0 0 18px var(--red), 0 0 10px var(--red);
+}
+
 .machine-card:hover {
   border-color: var(--diff-color, var(--green-mute));
   transform: translateY(-2px);
