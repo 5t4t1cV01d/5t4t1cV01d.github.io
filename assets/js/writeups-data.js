@@ -4,6 +4,21 @@
 // ============================================================
 const WRITEUPS = [
   {
+    id: "cl-factcheck",
+    title: "FactCheck",
+    platform: "CyLab",
+    type: "challenge",
+    category: "reversing",
+    difficulty: "medium",
+    locked: false,
+    date: "2026-08-13",
+    release_date: "2024-xx-xx",
+    completed_date: "2026-08-12",
+    avatar: "/assets/icon/Hackthebox-Reversing.svg",
+    tags: ["ELF", "radare2", "debugging", "little-endian"],
+    desc: "Dynamic flag assembly in ELF binary; extracted via radare2 debugging and heap inspection."
+  },
+  {
     id: "cl-keygenme",
     title: "Keygenme",
     platform: "CyLab",
@@ -32,22 +47,6 @@ const WRITEUPS = [
     avatar: "/assets/icon/Hackthebox-Reversing.svg",
     tags: ["ARM", "Unicorn Engine"],
     desc: "Automated solve of a 50-level timed ARM opcode challenge using Unicorn Engine emulation to compute register r0 within a timeout."
-  },
-  /*this is a test in tha block machine or challenge*/
-  {
-    id: "htb-lame",
-    title: "Lame",
-    platform: "HTB",
-    type: "machine",
-    os: "linux",
-    difficulty: "easy",
-    locked: true,
-    date: "2025-05-15",
-    release_date: "2007-05-15",
-    completed_date: "2025-05-15",
-    avatar: "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/fb2d9f98400e3c802a0d7145e125c4ff.png",
-    tags: ["Samba", "CVE-2007-2447", "Metasploit"],
-    desc: "Exploitation of the famous CVE-2007-2447 bug in Samba 3.0.20 to obtain a root shell directly."
   },
   {
     id: "htb-wingdata",

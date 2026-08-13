@@ -1,6 +1,6 @@
 ---
 title: Keygenme
-platform: picoCTF
+platform: CyLab
 difficulty: Hard
 type: Challenge
 category: Reversing
@@ -30,7 +30,7 @@ To execute the assessment methodology, specific utilities and toolkits are lever
 
 ## Challenge Setup & Context
 
-To begin, access the picoCTF platform and navigate to the **Keygenme** challenge under the Reversing Engineering category. The description simply asks: _"Can you get the flag? Reverse engineer this binary."_ The objective is offline reverse engineering: analyzing the executable's internal logic to extract or reconstruct a valid key.
+To begin, access the CyLab platform and navigate to the **Keygenme** challenge under the Reversing Engineering category. The description simply asks: _"Can you get the flag? Reverse engineer this binary."_ The objective is offline reverse engineering: analyzing the executable's internal logic to extract or reconstruct a valid key.
 
 ![LAB-CL-Keygenme-01.png](../assets/img/writeups/Keygenme/LAB-CL-Keygenme-01.png)
 
