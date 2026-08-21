@@ -1,5 +1,5 @@
 // ============================================================
-//  5t4t1cV01d Portfolio — writeup-renderer.js
+//  Rud1u5 Portfolio — writeup-renderer.js
 //  Renderiza dinámicamente el contenido Markdown (.md)
 // ============================================================
 
@@ -30,7 +30,7 @@
   }
 
   // 3. Establecer el título de la pestaña dinámicamente
-  document.title = `${machine.title} Writeup // 5t4t1cV01d`;
+  document.title = `${machine.title} Writeup // Rud1u5`;
 
   // 4. Renderizar la cabecera dinámica de la máquina
   const headerContainer = document.getElementById('writeup-header-container');

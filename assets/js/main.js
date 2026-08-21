@@ -1,5 +1,5 @@
 // ============================================================
-//  5t4t1cV01d Portfolio — main.js
+//  Rud1u5 Portfolio — main.js
 // ============================================================
 
 // ── COUNT-UP ANIMATION ──────────────────────────────────────
@@ -159,9 +159,9 @@ if (allGrid) {
 
 // ── EMAIL CLICK-TO-COPY ──────────────────────────────────────
 document.addEventListener('click', function (e) {
-  const emailLink = e.target.closest('a[href^="mailto:5t4t1cV01d@proton.me"]');
+  const emailLink = e.target.closest('a[href^="mailto:rud1u5@proton.me"]');
   if (emailLink) {
-    const emailText = '5t4t1cV01d@proton.me';
+    const emailText = 'rud1u5@proton.me';
     navigator.clipboard.writeText(emailText).then(() => {
       showCopyTooltip(emailLink, 'Copied!');
     }).catch(err => {

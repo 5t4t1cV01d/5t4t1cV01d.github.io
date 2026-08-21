@@ -1,4 +1,4 @@
-# 5t4t1cV01d — Cybersecurity Portfolio
+# Rud1u5 — Cybersecurity Portfolio
 
 Personal cyberpunk/hacker-themed portfolio, featuring dynamic writeups, projects, and certification tracking.
 
@@ -7,12 +7,12 @@ Personal cyberpunk/hacker-themed portfolio, featuring dynamic writeups, projects
 ### 1. Create the Repository
 
 ```bash
-# On GitHub: create a public repository named "5t4t1cV01d.github.io"
+# On GitHub: create a public repository named "Rud1u5.github.io"
 # Option A: Your main profile site (Highly Recommended)
-# Repo name: 5t4t1cV01d.github.io → URL: https://5t4t1cV01d.github.io
+# Repo name: Rud1u5.github.io → URL: https://Rud1u5.github.io
 
 # Option B: Subdirectory site
-# Repo name: portfolio → URL: https://5t4t1cV01d.github.io/portfolio
+# Repo name: portfolio → URL: https://Rud1u5.github.io/portfolio
 ```
 
 ### 2. Push the Files
@@ -22,7 +22,7 @@ git init
 git add .
 git commit -m "feat: initial portfolio deploy"
 git branch -M main
-git remote add origin git@github.com:5t4t1cV01d/5t4t1cV01d.github.io.git
+git remote add origin git@github.com:Rud1u5/Rud1u5.github.io.git
 git push -u origin main
 ```
 
@@ -33,7 +33,7 @@ git push -u origin main
 - Source: **Deploy from a branch**
 - Branch: **main** / `/ (root)`
 - Click **Save** and wait ~2 minutes.
-- Your site will be live at `https://5t4t1cV01d.github.io/portfolio`
+- Your site will be live at `https://Rud1u5.github.io/portfolio`
 
 ---
 
@@ -251,4 +251,4 @@ nano assets/js/writeups-data.js
 
 ---
 
-*5t4t1cV01d · Mérida, Yucatán · 2026*
+*Rud1u5 · Mérida, Yucatán · 2026*
